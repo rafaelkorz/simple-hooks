@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from 'react';
 
 function App() {
+
+  const [desc, setDesc] = useState('Empty');  
+  const [valor, setValor] = useState(0);  
+
+  const inputText = useRef();
+
+  function adicionarPost() {
+    setDesc(inputText.current.value);
+  }
+
+  function adicionarContador() {
+    setValor(valor + 1);
+  }
+
+  function subtrairContador() {
+    setValor(valor - 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <p>{desc}</p>
+      <input type="text" ref={inputText}/>
+      <button onClick={adicionarPost}>Postar</button>
+      <p>{valor}</p>
+      <button onClick={adicionarContador}>+</button>
+      <button onClick={subtrairContador}>-</button>
+
+    </>
+  ); 
 }
 
 export default App;
